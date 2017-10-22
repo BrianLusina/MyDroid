@@ -83,12 +83,30 @@ def getServiceAccountKey = { ->
     }
 }
 
+/**
+ * Gets keystore properties file from r*/
+def getKeyStorePropertiesFile = { ->
+    try{
+        return rootProject.file("keystores/keystore.properties")
+    }catch (Exception ignored){
+        return new File(System.getenv("BUDDYBUILD_SECURE_FILES") + "/keystore.properties")
+    }
+}
+
+def getPublishKey = { ->
+    try{
+        return rootProject.file("keystores/mydroid_publish_key.json")
+    }catch (Exception ignored){
+        return new File(System.getenv("BUDDYBUILD_SECURE_FILES") + "/mydroid_publish_key.json")
+    }
+}
+
 ext{
     // configurations to send to Play Store for automated publishing
-    pJsonKeyFile = rootProject.file("mydroid_publish_key.json")
+    pJsonKeyFile = getPublishKey()
     serviceAccountEmail = getServiceAccountKey()
 
-    keystorePropertiesFile = rootProject.file("keystore.properties")
+    keystorePropertiesFile = getKeyStorePropertiesFile()
     keystoreProperties = new Properties()
     keystoreProperties.load(new FileInputStream(ext.keystorePropertiesFile))
 
