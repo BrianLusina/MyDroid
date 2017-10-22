@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.mydroid.R
 import com.mydroid.ui.base.BaseFragment
 import com.mydroid.utils.getHeads
-import kotlinx.android.synthetic.main.fragment_body_parts.*
+import kotlinx.android.synthetic.main.fragment_body_parts.view.*
 import javax.inject.Inject
 
 /**
@@ -23,6 +23,10 @@ class BodyPartFragment : BaseFragment(), BodyPartView{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        activityComponent.injectBodyPart(this)
+
+        bodyPartPresenter.onAttach(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -30,12 +34,13 @@ class BodyPartFragment : BaseFragment(), BodyPartView{
 
         setUp(rootView)
 
-        body_part_image_view.setImageResource(getHeads()[0])
-
         return rootView
     }
 
     override fun setUp(view: View) {
+        with(view){
+            body_part_image_view.setImageResource(getHeads()[0])
+        }
     }
 
 }

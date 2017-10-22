@@ -2,6 +2,7 @@ package com.mydroid.di.components
 
 import com.mydroid.di.module.ActivityModule
 import com.mydroid.di.scopes.ActivityScope
+import com.mydroid.ui.bodyparts.BodyPartFragment
 import com.mydroid.ui.main.MainActivity
 import dagger.Component
 
@@ -16,4 +17,5 @@ interface ActivityComponent {
 
     fun injectMain(mainActivity: MainActivity)
 
+    fun injectBodyPart(bodyPartFragment: BodyPartFragment)
 }
