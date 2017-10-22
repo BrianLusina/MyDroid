@@ -22,7 +22,7 @@ class MyDroidActivity : BaseActivity(), MyDroidView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mydroid)
 
-        activityComponent.injectMain(this)
+        activityComponent.injectMyDroid(this)
 
         myDroidPresenter.onAttach(this)
 

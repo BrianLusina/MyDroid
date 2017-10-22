@@ -3,8 +3,9 @@ package com.mydroid.di.components
 import com.mydroid.di.module.ActivityModule
 import com.mydroid.di.scopes.ActivityScope
 import com.mydroid.ui.bodyparts.BodyPartFragment
-import com.mydroid.ui.main.MyDroidActivity
+import com.mydroid.ui.main.MainActivity
 import com.mydroid.ui.masterlist.MasterListFragment
+import com.mydroid.ui.mydroid.MyDroidActivity
 import dagger.Component
 
 /**
@@ -16,7 +17,9 @@ import dagger.Component
         dependencies = arrayOf(AppComponent::class))
 interface ActivityComponent {
 
-    fun injectMain(myDroidActivity: MyDroidActivity)
+    fun injectMain(mainActivity: MainActivity)
+
+    fun injectMyDroid(myDroidActivity: MyDroidActivity)
 
     fun injectBodyPart(bodyPartFragment: BodyPartFragment)
 

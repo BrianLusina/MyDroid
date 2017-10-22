@@ -1,7 +1,6 @@
 package com.mydroid.ui.mydroid
 
 import com.mydroid.ui.base.BasePresenterImpl
-import com.mydroid.ui.main.MyDroidView
 import javax.inject.Inject
 
 /**
