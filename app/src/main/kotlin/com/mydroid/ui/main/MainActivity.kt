@@ -18,5 +18,5 @@ class MainActivity : BaseActivity(), MainView{
 
         mainPresenter.onAttach(this)
     }
-    
+
 }

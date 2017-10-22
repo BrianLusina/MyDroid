@@ -3,6 +3,9 @@ package com.mydroid.di.module
 import android.content.Context
 import android.support.v7.app.AppCompatActivity
 import com.mydroid.di.scopes.ActivityScope
+import com.mydroid.ui.bodyparts.BodyPartPresenter
+import com.mydroid.ui.bodyparts.BodyPartPresenterImpl
+import com.mydroid.ui.bodyparts.BodyPartView
 import com.mydroid.ui.main.MainPresenter
 import com.mydroid.ui.main.MainPresenterImpl
 import com.mydroid.ui.main.MainView
@@ -33,6 +36,13 @@ class ActivityModule(private val mActivity: AppCompatActivity) {
     fun provideMainPresenter(mainPresenter: MainPresenterImpl<MainView>)
             : MainPresenter<MainView> {
         return mainPresenter
+    }
+
+    @Provides
+    @ActivityScope
+    fun provideBodyPartPresenter(bodyPartPresenter: BodyPartPresenterImpl<BodyPartView>)
+            : BodyPartPresenter<BodyPartView> {
+        return bodyPartPresenter
     }
 
 
