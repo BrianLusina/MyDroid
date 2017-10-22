@@ -47,6 +47,7 @@ android {
             res.srcDirs = [
                     "src/main/res/layouts/feature_main",
                     "src/main/res/layouts/feature_body_parts",
+                    "src/main/res/layouts/feature_master_list",
                     "src/main/res/layouts/common",
                     "src/main/res/layouts",
                     "src/main/res",

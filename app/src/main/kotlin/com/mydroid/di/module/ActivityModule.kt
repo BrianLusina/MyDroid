@@ -9,6 +9,9 @@ import com.mydroid.ui.bodyparts.BodyPartView
 import com.mydroid.ui.main.MainPresenter
 import com.mydroid.ui.main.MainPresenterImpl
 import com.mydroid.ui.main.MainView
+import com.mydroid.ui.masterlist.MasterListPresenter
+import com.mydroid.ui.masterlist.MasterListPresenterImpl
+import com.mydroid.ui.masterlist.MasterListView
 import dagger.Module
 import dagger.Provides
 
@@ -45,6 +48,10 @@ class ActivityModule(private val mActivity: AppCompatActivity) {
         return bodyPartPresenter
     }
 
-
-
+    @Provides
+    @ActivityScope
+    fun provideMasterListPresenter(masterListPresenter: MasterListPresenterImpl<MasterListView>)
+            : MasterListPresenter<MasterListView> {
+        return masterListPresenter
+    }
 }
