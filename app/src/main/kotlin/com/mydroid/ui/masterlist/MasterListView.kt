@@ -1,5 +1,6 @@
 package com.mydroid.ui.masterlist
 
+import android.os.Bundle
 import com.mydroid.ui.base.BaseView
 
 /**
@@ -7,4 +8,8 @@ import com.mydroid.ui.base.BaseView
  * @Notes View interface for the Master List fragment
  */
 interface MasterListView : BaseView{
+
+    fun setMasterListAdapter()
+
+    fun restoreViewState(savedInstanceState : Bundle?)
 }

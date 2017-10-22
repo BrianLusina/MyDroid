@@ -27,9 +27,7 @@ class MainActivity : BaseActivity(), MainView {
 
         fragmentManager = supportFragmentManager
 
-        if (savedInstanceState == null){
-            mainPresenter.onViewCreated()
-        }
+        mainPresenter.onViewCreated()
     }
 
     override fun onFragmentAttached() {

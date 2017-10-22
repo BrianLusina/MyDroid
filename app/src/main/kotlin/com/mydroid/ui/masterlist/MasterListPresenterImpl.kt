@@ -1,5 +1,6 @@
 package com.mydroid.ui.masterlist
 
+import android.os.Bundle
 import com.mydroid.ui.base.BasePresenterImpl
 import javax.inject.Inject
 
@@ -8,4 +9,13 @@ import javax.inject.Inject
  * @Notes
  */
 class MasterListPresenterImpl<V : MasterListView> @Inject constructor() : MasterListPresenter<V>, BasePresenterImpl<V>() {
+
+    override fun onAttach(mBaseView: V) {
+        super.onAttach(mBaseView)
+        baseView.setMasterListAdapter()
+    }
+
+    override fun onViewCreated(savedInstanceState: Bundle?) {
+        baseView.restoreViewState(savedInstanceState)
+    }
 }

@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.mydroid.R
 import com.mydroid.ui.base.BaseFragment
+import com.mydroid.utils.getAll
+import kotlinx.android.synthetic.main.fragment_master_list.view.*
 import javax.inject.Inject
 
 /**
@@ -19,6 +21,9 @@ class MasterListFragment : BaseFragment(), MasterListView{
     @Inject
     lateinit var masterListPresenter : MasterListPresenter<MasterListView>
 
+    @Inject
+    lateinit var masterListAdapter : MasterListAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         rootView = inflater.inflate(R.layout.fragment_master_list, container, false)
 
@@ -28,10 +33,27 @@ class MasterListFragment : BaseFragment(), MasterListView{
 
         setUp(rootView)
 
+        masterListPresenter.onViewCreated(savedInstanceState)
         return rootView
+    }
+
+    override fun onViewStateRestored(savedInstanceState: Bundle?) {
+        super.onViewStateRestored(savedInstanceState)
+        masterListPresenter.onViewCreated(savedInstanceState)
+    }
+
+    override fun restoreViewState(savedInstanceState: Bundle?) {
+
     }
 
     override fun setUp(view: View) {
 
+    }
+
+    override fun setMasterListAdapter() {
+        masterListAdapter.imageIdArrayList = getAll()
+        with(rootView){
+            grid_view.adapter = masterListAdapter
+        }
     }
 }

@@ -20,7 +20,7 @@ class MyDroidActivity : BaseActivity(), MyDroidView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_mydroid)
 
         activityComponent.injectMain(this)
 

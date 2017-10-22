@@ -46,6 +46,7 @@ android {
             java.srcDirs += 'src/main/kotlin'
             res.srcDirs = [
                     "src/main/res/layouts/feature_main",
+                    "src/main/res/layouts/feature_mydroid",
                     "src/main/res/layouts/feature_body_parts",
                     "src/main/res/layouts/feature_master_list",
                     "src/main/res/layouts/common",
