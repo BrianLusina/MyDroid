@@ -9,6 +9,10 @@
 .externalNativeBuild
 ### Gradle template
 .idea/
+gradle.properties
+keystores/keystore.properties
+keystores/mydroid_publish_key.json
+*.jks
 # Ignore Gradle GUI config
 gradle-app.setting
 

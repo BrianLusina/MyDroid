@@ -25,8 +25,91 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+/**
+ * Get version code from git history
+ * This will dynamically increase the version code
+ * If it fails to get from git, it will get it from the properties file, ensure that there is a properties
+ * file at root of project
+ * */
+def getVersionCode = { ->
+    try{
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine "git", "rev-list", "--first-parent", "--count", "origin/master"
+            standardOutput = stdout
+        }
+        Random random = new Random()
+
+        // this ensures that the version code remains unique for every build
+        def number = random.nextInt(10) + random.nextInt(5) * random.nextInt(7) + random.nextInt(4)
+        return Integer.parseInt(stdout.toString().trim()) + number
+    }catch (ignored){
+        Properties properties = new Properties()
+        properties.load(new FileInputStream("gradle.properties"))
+        return Integer.parseInt(properties.getProperty("VERSION_CODE"))
+    }
+}
+
+/**
+ * Get version name will ensure that the version name of the application remains unique and ever changing
+ * for easier tracking. This will pull the information from git
+ * */
+def getVersionName = { ->
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine "git", "describe" "--dirty"
+            standardOutput = stdout
+        }
+        return stdout.toString().trim()
+    }catch (ignored){
+        Properties properties = new Properties()
+        properties.load(new FileInputStream("gradle.properties"))
+        return properties.getProperty("VERSION_NAME")
+    }
+}
+
+/**
+ * Gets the Moja service account email gradle.properties file, Ensure that you have a
+ * gradle.properties file in root project directory
+ * */
+def getServiceAccountKey = { ->
+    try {
+        Properties properties = new Properties()
+        properties.load(new FileInputStream("gradle.properties"))
+        return properties.getProperty("SERVICE_ACCOUNT_EMAIL")
+    } catch (Exception ignored) {
+        return ""
+    }
+}
 
 ext{
+    // configurations to send to Play Store for automated publishing
+    pJsonKeyFile = rootProject.file("keystores/mydroid_publish_key.json")
+    serviceAccountEmail = getServiceAccountKey()
+
+    keystorePropertiesFile = rootProject.file("keystores/keystore.properties")
+    keystoreProperties = new Properties()
+    keystoreProperties.load(new FileInputStream(ext.keystorePropertiesFile))
+
+    /**
+     * Set this to true to create two separate APKs instead of one:
+     *   - An APK that only works on ARM devices
+     *   - An APK that only works on x86 devices
+     * The advantage is the size of the APK is reduced by about 4MB.
+     * Upload all the APKs to the Play Store and people will download
+     * the correct one based on the CPU architecture of their device.
+     */
+    enableSeparateBuildPerCPUArchitecture = true
+
+    // If true, also generate a universal APK
+    enableUniversalApk = true
+
+    // ABI codes
+    abiCodes = ["armeabi": 3, "armeabi-v7a": 4, "arm64-v8a": 5, "mips": 6, "x86": 7, "x86_64": 8]
+
+    versionCode = getVersionCode()
+    versionName = getVersionName()
 
     // Dependency Injection
     javaxAnnotationVersion = "1.0"
