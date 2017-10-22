@@ -7,4 +7,6 @@ import com.mydroid.ui.base.BaseView
  * @Notes
  */
 interface MainView : BaseView{
+
+    fun transactFragment()
 }

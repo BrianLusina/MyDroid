@@ -7,4 +7,6 @@ import com.mydroid.ui.base.BasePresenter
  * @Notes
  */
 interface MainPresenter<V : MainView> : BasePresenter<V>{
+
+    fun onViewCreated()
 }

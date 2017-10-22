@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.mydroid.R
 import com.mydroid.ui.base.BaseFragment
+import com.mydroid.utils.getHeads
+import kotlinx.android.synthetic.main.fragment_body_parts.*
 import javax.inject.Inject
 
 /**
@@ -28,9 +30,10 @@ class BodyPartFragment : BaseFragment(), BodyPartView{
 
         setUp(rootView)
 
+        body_part_image_view.setImageResource(getHeads()[0])
+
         return rootView
     }
-
 
     override fun setUp(view: View) {
     }

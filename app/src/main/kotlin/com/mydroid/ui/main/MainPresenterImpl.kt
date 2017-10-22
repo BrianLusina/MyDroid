@@ -11,4 +11,7 @@ class MainPresenterImpl<V : MainView>
 @Inject
 constructor() : MainPresenter<V>, BasePresenterImpl<V>() {
 
+    override fun onViewCreated() {
+        baseView.transactFragment()
+    }
 }
