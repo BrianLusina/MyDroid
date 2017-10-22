@@ -7,6 +7,8 @@ apply plugin: 'kotlin-kapt'
 ext{
     supportLibVersion = "26.1.0"
     multiDexVersion = "1.0.2"
+    // anko version
+    ankoVersion = "0.10.1"
 }
 
 android {
@@ -90,6 +92,8 @@ dependencies {
     implementation "com.android.support:multidex:$multiDexVersion"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    // Anko Commons
+    implementation "org.jetbrains.anko:anko-commons:$ankoVersion"
 
     // Dagger
     compileOnly "javax.annotation:jsr250-api:$javaxAnnotationVersion"
