@@ -73,19 +73,19 @@ private val all = object : ArrayList<Int>() {
 
 // Getter methods that return lists of all head images, body images, and leg images
 
-fun getHeads(): List<Int> {
+fun getHeads(): ArrayList<Int> {
     return heads
 }
 
-fun getBodies(): List<Int> {
+fun getBodies(): ArrayList<Int> {
     return bodies
 }
 
-fun getLegs(): List<Int> {
+fun getLegs(): ArrayList<Int> {
     return legs
 }
 
 // Returns a list of all the images combined: heads, bodies, and legs in that order
-fun getAll(): List<Int> {
+fun getAll(): ArrayList<Int> {
     return all
 }

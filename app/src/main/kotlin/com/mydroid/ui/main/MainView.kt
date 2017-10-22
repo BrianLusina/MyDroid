@@ -8,5 +8,9 @@ import com.mydroid.ui.base.BaseView
  */
 interface MainView : BaseView{
 
-    fun transactFragment()
+    fun transactHeadFragment()
+
+    fun transactBodyFragment()
+
+    fun transactLegFragment()
 }

@@ -12,6 +12,8 @@ class MainPresenterImpl<V : MainView>
 constructor() : MainPresenter<V>, BasePresenterImpl<V>() {
 
     override fun onViewCreated() {
-        baseView.transactFragment()
+        baseView.transactLegFragment()
+        baseView.transactBodyFragment()
+        baseView.transactHeadFragment()
     }
 }
