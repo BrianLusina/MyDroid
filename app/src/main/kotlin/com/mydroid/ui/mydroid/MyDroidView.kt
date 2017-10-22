@@ -1,5 +1,6 @@
 package com.mydroid.ui.mydroid
 
+import android.os.Bundle
 import com.mydroid.ui.base.BaseView
 
 /**
@@ -7,6 +8,12 @@ import com.mydroid.ui.base.BaseView
  * @Notes
  */
 interface MyDroidView : BaseView{
+
+    /**
+     * Retrieves the droid bundle sent
+     * @param savedInstanceState State of bundle saved in view
+     * */
+    fun retrieveDroidBundle(savedInstanceState : Bundle?)
 
     fun transactHeadFragment()
 

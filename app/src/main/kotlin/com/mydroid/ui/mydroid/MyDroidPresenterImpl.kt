@@ -1,5 +1,6 @@
 package com.mydroid.ui.mydroid
 
+import android.os.Bundle
 import com.mydroid.ui.base.BasePresenterImpl
 import javax.inject.Inject
 
@@ -11,7 +12,7 @@ class MyDroidPresenterImpl<V : MyDroidView>
 @Inject
 constructor() : MyDroidPresenter<V>, BasePresenterImpl<V>() {
 
-    override fun onViewCreated() {
+    override fun onViewCreated(savedInstanceState : Bundle?) {
         baseView.transactLegFragment()
         baseView.transactBodyFragment()
         baseView.transactHeadFragment()

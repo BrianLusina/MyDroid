@@ -1,5 +1,6 @@
 package com.mydroid.ui.mydroid
 
+import android.os.Bundle
 import com.mydroid.ui.base.BasePresenter
 
 /**
@@ -8,5 +9,5 @@ import com.mydroid.ui.base.BasePresenter
  */
 interface MyDroidPresenter<V : MyDroidView> : BasePresenter<V>{
 
-    fun onViewCreated()
+    fun onViewCreated(savedInstanceState : Bundle?)
 }

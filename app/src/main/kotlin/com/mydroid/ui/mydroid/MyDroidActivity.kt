@@ -5,9 +5,7 @@ import android.support.v4.app.FragmentManager
 import com.mydroid.R
 import com.mydroid.ui.base.BaseActivity
 import com.mydroid.ui.bodyparts.BodyPartFragment
-import com.mydroid.utils.getBodies
-import com.mydroid.utils.getHeads
-import com.mydroid.utils.getLegs
+import com.mydroid.utils.*
 import javax.inject.Inject
 
 class MyDroidActivity : BaseActivity(), MyDroidView {
@@ -17,6 +15,7 @@ class MyDroidActivity : BaseActivity(), MyDroidView {
 
     lateinit var fragmentManager :FragmentManager
 
+    lateinit var droidBundle : Bundle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,13 +28,34 @@ class MyDroidActivity : BaseActivity(), MyDroidView {
         fragmentManager = supportFragmentManager
 
         if (savedInstanceState == null){
-            myDroidPresenter.onViewCreated()
+            myDroidPresenter.onViewCreated(savedInstanceState)
+        }
+    }
+
+    override fun retrieveDroidBundle(savedInstanceState: Bundle?) {
+        if (intent.extras != null || intent.getBundleExtra(DROID_BUNDLE_KEY) != null){
+            droidBundle = intent.extras.getBundle(DROID_BUNDLE_KEY)
+        }else if (savedInstanceState != null){
+            droidBundle = savedInstanceState.getBundle(DROID_BUNDLE_KEY)
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle?) {
+        outState?.putBundle(DROID_BUNDLE_KEY, droidBundle)
+        super.onSaveInstanceState(outState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        if(savedInstanceState != null){
+            droidBundle = savedInstanceState.getBundle(DROID_BUNDLE_KEY)
         }
     }
 
     override fun transactHeadFragment() {
         val headFragment = BodyPartFragment()
         headFragment.mImageIds = getHeads()
+        headFragment.mListIndex =droidBundle.getInt(DROID_HEAD_INDEX_KEY)
 
         fragmentManager.beginTransaction()
                 .add(R.id.head_container, headFragment)
@@ -45,6 +65,7 @@ class MyDroidActivity : BaseActivity(), MyDroidView {
     override fun transactBodyFragment() {
         val bodyFragment = BodyPartFragment()
         bodyFragment.mImageIds = getBodies()
+        bodyFragment.mListIndex = droidBundle.getInt(DROID_BODY_INDEX_KEY)
 
         fragmentManager.beginTransaction()
                 .add(R.id.body_container, bodyFragment)
@@ -54,7 +75,7 @@ class MyDroidActivity : BaseActivity(), MyDroidView {
     override fun transactLegFragment() {
         val legFragment = BodyPartFragment()
         legFragment.mImageIds = getLegs()
-
+        legFragment.mListIndex = droidBundle.getInt(DROID_LEGS_INDEX_KEY)
         fragmentManager.beginTransaction()
                 .add(R.id.leg_container, legFragment)
                 .commit()
