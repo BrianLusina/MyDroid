@@ -10,13 +10,12 @@ import com.mydroid.utils.getHeads
 import com.mydroid.utils.getLegs
 import javax.inject.Inject
 
-class MainActivity : BaseActivity(), MainView{
+class MainActivity : BaseActivity(), MainView {
 
     @Inject
-    lateinit var mainPresenter : MainPresenter<MainView>
+    lateinit var mainPresenter: MainPresenter<MainView>
 
     lateinit var fragmentManager :FragmentManager
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,33 +30,6 @@ class MainActivity : BaseActivity(), MainView{
         if (savedInstanceState == null){
             mainPresenter.onViewCreated()
         }
-    }
-
-    override fun transactHeadFragment() {
-        val headFragment = BodyPartFragment()
-        headFragment.mImageIds = getHeads()
-
-        fragmentManager.beginTransaction()
-                .add(R.id.head_container, headFragment)
-                .commit()
-    }
-
-    override fun transactBodyFragment() {
-        val bodyFragment = BodyPartFragment()
-        bodyFragment.mImageIds = getBodies()
-
-        fragmentManager.beginTransaction()
-                .add(R.id.body_container, bodyFragment)
-                .commit()
-    }
-
-    override fun transactLegFragment() {
-        val legFragment = BodyPartFragment()
-        legFragment.mImageIds = getLegs()
-
-        fragmentManager.beginTransaction()
-                .add(R.id.leg_container, legFragment)
-                .commit()
     }
 
     override fun onFragmentAttached() {
