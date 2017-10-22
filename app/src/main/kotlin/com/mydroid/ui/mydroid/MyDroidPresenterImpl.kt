@@ -13,6 +13,7 @@ class MyDroidPresenterImpl<V : MyDroidView>
 constructor() : MyDroidPresenter<V>, BasePresenterImpl<V>() {
 
     override fun onViewCreated(savedInstanceState : Bundle?) {
+        baseView.retrieveDroidBundle(savedInstanceState)
         baseView.transactLegFragment()
         baseView.transactBodyFragment()
         baseView.transactHeadFragment()
