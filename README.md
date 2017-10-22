@@ -1,6 +1,6 @@
 ## MyDroid
 
-![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=59ecef5f694f57000118b389&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/59ecef5f694f57000118b389/build/latest?branch=master)
+![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=59ecef5f694f57000118b389&branch=master&build=latest)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ef43a4c10bac4be2b35cbb9773d04513)](https://www.codacy.com/app/BrianLusina/MyDroid?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=BrianLusina/MyDroid&amp;utm_campaign=Badge_Grade)
 
 App that lets you style your own Droid! This uses Fragments to create a flexible and responsive UI.

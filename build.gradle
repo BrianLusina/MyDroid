@@ -85,10 +85,10 @@ def getServiceAccountKey = { ->
 
 ext{
     // configurations to send to Play Store for automated publishing
-    pJsonKeyFile = rootProject.file("keystores/mydroid_publish_key.json")
+    pJsonKeyFile = rootProject.file("mydroid_publish_key.json")
     serviceAccountEmail = getServiceAccountKey()
 
-    keystorePropertiesFile = rootProject.file("keystores/keystore.properties")
+    keystorePropertiesFile = rootProject.file("keystore.properties")
     keystoreProperties = new Properties()
     keystoreProperties.load(new FileInputStream(ext.keystorePropertiesFile))
 
