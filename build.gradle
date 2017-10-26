@@ -134,4 +134,9 @@ ext{
     daggerVersion = "2.11"
     javaxAnnotationVersion = "1.0"
     javaxInjectVersion = "1"
+
+    // test dependencies
+    jUnitVersion = "4.12"
+    mockitoCoreVersion = "2.11.2"
+    espressoVersion = "2.2.2"
 }

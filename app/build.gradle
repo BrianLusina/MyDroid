@@ -1,10 +1,10 @@
 import com.android.build.OutputFile
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'com.github.triplet.play'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "com.github.triplet.play"
+apply plugin: "kotlin-android-extensions"
+apply plugin: "kotlin-kapt"
 
 ext{
     supportLibVersion = "26.1.0"
@@ -37,7 +37,7 @@ android {
     }
 
     compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "com.mydroid"
         minSdkVersion 16
@@ -79,10 +79,10 @@ android {
 
     signingConfigs {
         release {
-            keyAlias rootProject.ext.keystoreProperties['keyAlias']
-            keyPassword rootProject.ext.keystoreProperties['keyPassword']
-            storeFile rootProject.file(rootProject.ext.keystoreProperties['storeFile'])
-            storePassword rootProject.ext.keystoreProperties['storePassword']
+            keyAlias rootProject.ext.keystoreProperties["keyAlias"]
+            keyPassword rootProject.ext.keystoreProperties["keyPassword"]
+            storeFile rootProject.file(rootProject.ext.keystoreProperties["storeFile"])
+            storePassword rootProject.ext.keystoreProperties["storePassword"]
         }
     }
 
@@ -93,7 +93,7 @@ android {
             debuggable false
             zipAlignEnabled true
             signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
 
         debug {
@@ -107,14 +107,14 @@ android {
     // configurations for deployment
     play {
         track = getReleaseTrack() //"alpha"
-        untrackOld = true // will untrack 'alpha' while upload to 'beta'
+        untrackOld = true // will untrack "alpha" while upload to "beta"
         errorOnSizeLimit = false
         uploadImages = true
     }
 
     sourceSets {
         main {
-            java.srcDirs += 'src/main/kotlin'
+            java.srcDirs += "src/main/kotlin"
             res.srcDirs = [
                     "src/main/res/layouts/feature_main",
                     "src/main/res/layouts/feature_mydroid",
@@ -184,7 +184,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:$supportLibVersion"
     implementation "com.android.support:multidex:$multiDexVersion"
 
@@ -198,8 +198,11 @@ dependencies {
     implementation "javax.inject:javax.inject:$javaxInjectVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
+    // tests
+    testImplementation "junit:junit:$jUnitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoCoreVersion"
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$espressoVersion", {
+        exclude group: "com.android.support", module: "support-annotations"
     })
-    testImplementation 'junit:junit:4.12'
+    androidTestImplementation "org.mockito:mockito-android:$mockitoCoreVersion"
 }

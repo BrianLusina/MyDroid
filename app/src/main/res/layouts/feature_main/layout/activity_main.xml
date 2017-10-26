@@ -1,7 +1,17 @@
 <!-- Display the static master list fragment -->
-<fragment
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/master_list_fragment"
-        android:name="com.mydroid.ui.masterlist.MasterListFragment"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:orientation="vertical"
+        android:baselineAligned="false">
+
+    <include
+            android:id="@+id/toolbarLayout"
+            layout="@layout/toolbar"/>
+
+    <fragment android:id="@+id/master_list_fragment"
+            android:name="com.mydroid.ui.masterlist.MasterListFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+</LinearLayout>
